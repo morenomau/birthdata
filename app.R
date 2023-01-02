@@ -1,4 +1,4 @@
-#Author: Mauricio Moreno
+#Author: Mauricio Moreno, Middlebury 2023
 
 library(tidyverse)
 library(ggplot2)
