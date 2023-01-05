@@ -1,0 +1,13 @@
+name: birthdata
+title: birthdata
+username:
+account: moreno-mauricio
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 5566233
+bundleId: 6701253
+url: https://moreno-mauricio.shinyapps.io/BirthData/
+when: 1672940959.63133
+lastSyncTime: 1672940959.63135
+asMultiple: FALSE
+asStatic: FALSE

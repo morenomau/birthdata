@@ -35,6 +35,10 @@ world.borders$Country <- str_replace_all(world.borders$Country,
                                          "United States of America",
                                          "United States") 
 
+#merging border and birth data
+require(sp)
+joined.data1 <- merge(world.borders, world.data, by = "Country", duplicateGeoms = TRUE)
+
 world.births <- world.data
 
 #Filtering only for years that are available in other data set
@@ -91,20 +95,16 @@ server <- function(input, output) {
   }#, deleteFile = TRUE
   )
   
-  
-  
   output$heatmap <- renderLeaflet({
-    birth.year.data <- world.data %>%
-      filter(Year == input$year)
-    
-    #joined.data <- merge(x = world.borders, y = birth.year.data, by = "Country", all.x = FALSE)
-    
-    #world.borders@data = data.frame(world.borders@data, birth.year.data[match(world.borders@data[,"Country"], birth.year.data[,"Country"]),])
+    #birth.year.data <- world.data %>%
+    #  filter(Year == input$year)
+    require(sp)
+    joined.data <- subset(joined.data1, Year == input$year)
     
     require(sp)
-    joined.data <- merge(world.borders, birth.year.data, by = "Country", all.x = FALSE)
+    #joined.data <- merge(world.borders, birth.year.data, by = "Country", all.x = FALSE)
     
-    class(joined.data)
+    #class(joined.data)
     
     bins1 <- c(0, 1, 2, 3, 4, 5, 6, 7, Inf)
     colors1 <- colorBin(palette = "YlOrRd",
