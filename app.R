@@ -36,8 +36,8 @@ world.borders$Country <- str_replace_all(world.borders$Country,
                                          "United States") 
 
 #merging border and birth data
-require(sp)
-joined.data1 <- merge(world.borders, world.data, by = "Country", duplicateGeoms = TRUE)
+#require(sp)
+#joined.data1 <- merge(world.borders, world.data, by = "Country", duplicateGeoms = TRUE)
 
 world.births <- world.data
 
@@ -96,13 +96,13 @@ server <- function(input, output) {
   )
   
   output$heatmap <- renderLeaflet({
-    #birth.year.data <- world.data %>%
-    #  filter(Year == input$year)
-    require(sp)
-    joined.data <- subset(joined.data1, Year == input$year)
+    birth.year.data <- world.data %>%
+      filter(Year == input$year)
+    #require(sp)
+    #joined.data <- subset(joined.data1, Year == input$year)
     
     require(sp)
-    #joined.data <- merge(world.borders, birth.year.data, by = "Country", all.x = FALSE)
+    joined.data <- merge(world.borders, birth.year.data, by = "Country", all.x = FALSE)
     
     #class(joined.data)
     
